@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="../assets/cnodejs_light.svg" alt="">
+        <img src="../assets/cnodejs_light.svg">
         <ul>
             <li><a href="#">首页</a></li>
             <li><a href="#">新手入门</a></li>

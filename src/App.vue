@@ -6,11 +6,13 @@
 
 <script>
 import Header from './components/Header.vue'
+import PostList from './components/PostList'
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    PostList
   }
 }
 </script>
