@@ -1,11 +1,32 @@
 <template>
-  <div>
-    <div>
-      <img src="../assets/loading.gif" v-if="isLoading">
+  <div class="PostList">
+    <div v-if="isLoading" class="loading">
+      <img src="../assets/loading.gif">
     </div>
-    <div>
+    <div v-else class="posts">
       <ul>
-        <li></li>
+        <li>
+        <div class="toobar">
+          <span>全部</span>
+          <span>精华</span>
+          <span>分享</span>
+          <span>问答</span>
+          <span>招聘</span>
+        </div>
+      </li>
+        <li v-for="(value,key,index) in posts">
+          <img :src="value.author.avatar_url">
+          <span class="allcount"><span class="reply_count">{{ value.reply_count }}</span>/{{  value.visit_count }}</span>
+          <span :class="[{put_good:(value.good  == true),put_top:(value.top  == true),
+        'topiclist-tab':(value.good  != true && value.top  != true)}]">{{ value | tabFormatter }}</span>
+        <!-- 跳转到 Artical -->
+        <router-link :to="{name:'postContent',params: {id: value.id}}">   
+        <span>{{ value.title }}</span>
+        </router-link>
+        <span class="last_reply">
+          {{value.last_reply_at | formatDate}}
+        </span>
+        </li>
       </ul>
     </div>
   </div>
@@ -29,8 +50,8 @@ export default {
         }
       })
         .then(res=>{
-          
-          console.log(res)
+          this.posts = res.data.data
+          this.isLoading = false
         })
         .catch(err=>{
           console.log(err)

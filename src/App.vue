@@ -1,21 +1,24 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <Header></Header>
+    <router-view name="main"></router-view>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
-import PostList from './components/PostList'
 
 export default {
   name: 'App',
   components: {
     Header,
-    PostList
   }
 }
 </script>
 
 <style>
+.main{
+  width: 80%;
+  margin: 0 auto;
+}
 </style>
